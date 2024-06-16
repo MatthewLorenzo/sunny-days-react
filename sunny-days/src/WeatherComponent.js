@@ -1,8 +1,23 @@
-import sun from "./sunny.svg";
+import clearSky from "./clear-sky.svg";
+import cloudy from "./cloudy.svg";
+import brokenClouds from "./broken_clouds.svg";
+import mist from "./mist.svg";
+import rain from "./rain.svg";
+import snow from "./snow.svg";
+import thunderstorm from "./thunderstorm.svg";
 import DetailsComponent from "./DetailsComponent";
 import { useEffect, useState } from "react";
 
 export default function WeatherComponent({ input }) {
+  const icons = [
+    clearSky,
+    cloudy,
+    brokenClouds,
+    mist,
+    rain,
+    snow,
+    thunderstorm,
+  ];
   console.log("input: " + input);
   const [weatherData, setWeatherData] = useState("");
   const search = (city, country) => {
@@ -42,6 +57,32 @@ export default function WeatherComponent({ input }) {
     }
   }, [input]);
 
+  var icon = "";
+  console.log(weatherData.desc);
+
+  switch (weatherData.desc) {
+    case "Clear":
+      icon = icons[0];
+      break;
+    case "Clouds":
+      icon = icons[1];
+      break;
+    case "Rain" || "Drizzle":
+      icon = icons[4];
+      break;
+    case "Thunderstorm":
+      icon = icons[6];
+      break;
+    case "Atmosphere":
+      icon = icons[3];
+      break;
+    case "Snow":
+      icon = icons[5];
+      break;
+    default:
+      icon = icons[0];
+  }
+
   return (
     <div className="weather">
       <div
@@ -57,7 +98,7 @@ export default function WeatherComponent({ input }) {
         style={{ display: "flex", justifyContent: "center" }}
       >
         <img
-          src={sun}
+          src={icon}
           alt="icon"
           className="img-icon"
           style={{ width: "100px", height: "100px" }}
