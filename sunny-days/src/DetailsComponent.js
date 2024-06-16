@@ -1,4 +1,6 @@
-export default function DetailsComponent() {
+export default function DetailsComponent(props) {
+  console.log(props.weatherData);
+  console.log(props.weatherData.city);
   return (
     <div
       className="details"
@@ -11,12 +13,22 @@ export default function DetailsComponent() {
         borderRadius: "20px",
         height: "25vh",
         marginTop: "5%",
+        textAlign: "center",
+        flexDirection: "column",
       }}
     >
-      <p>
-        adding drop down with different options like preciptation chart, view
-        wind speeds, sunrise/sunset
-      </p>
+      <h3 style={{ marginTop: 3, marginBottom: 3 }}>
+        Feels Like: {props.weatherData.feelsLike}&deg; F
+      </h3>
+      <h3 style={{ marginTop: 3, marginBottom: 3 }}>
+        High: {props.weatherData.high}&deg; F
+      </h3>
+      <h3 style={{ marginTop: 3, marginBottom: 3 }}>
+        Low: {props.weatherData.low}&deg; F
+      </h3>
+      <h3 style={{ marginTop: 3, marginBottom: 3 }}>
+        Humidity: {props.weatherData.humidity}%
+      </h3>
     </div>
   );
 }

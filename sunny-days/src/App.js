@@ -1,7 +1,10 @@
 import SearchComponent from "./SearchComponent";
 import WeatherComponent from "./WeatherComponent";
+import { useState } from "react";
 
 function App() {
+  const [input, setInput] = useState("");
+
   return (
     <div
       className="page-container"
@@ -18,7 +21,7 @@ function App() {
         style={{
           placeSelf: "center",
           borderRadius: "20px",
-          width: "30%",
+          width: "20%",
           height: "75vh",
           backgroundImage: `linear-gradient(
           135deg,
@@ -30,8 +33,8 @@ function App() {
           boxShadow: `-10px 10px 10px 0px rgba(0,0,0,0.5)`,
         }}
       >
-        <SearchComponent />
-        <WeatherComponent />
+        <SearchComponent setInput={setInput} />
+        <WeatherComponent input={input} />
       </div>
     </div>
   );
